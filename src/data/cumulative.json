@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-03-28T06:00:00+09:00",
-  "base_amount": 23400,
-  "daily_increment": 64,
+  "updated_at": "2026-03-29T12:46:17.757664+09:00",
+  "base_amount": 27492,
+  "daily_increment": 316,
   "year": 2026,
   "source_cpi_yoy_pct": 3.2,
   "note": "前年同月CPI上昇率をベースに日割り算出"

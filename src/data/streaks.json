@@ -1,8 +1,33 @@
 {
-  "updated_at": "2026-03-28T06:00:00+09:00",
+  "updated_at": "2026-03-29T12:46:17.724762+09:00",
   "streaks": {
-    "tamago": { "direction": "up", "days": 12, "record": 12, "prev_record": 9, "label": "卵" },
-    "usdjpy": { "direction": "up", "days": 5, "record": 14, "prev_record": 14, "label": "ドル円" },
-    "gasoline": { "direction": "up", "days": 3, "record": 8, "prev_record": 8, "label": "ガソリン" }
+    "tamago": {
+      "direction": "up",
+      "days": 12,
+      "record": 12,
+      "prev_record": 9,
+      "label": "卵"
+    },
+    "usdjpy": {
+      "direction": "up",
+      "days": 6,
+      "record": 14,
+      "prev_record": 14,
+      "label": "ドル円"
+    },
+    "gasoline": {
+      "direction": "up",
+      "days": 4,
+      "record": 8,
+      "prev_record": 8,
+      "label": "ガソリン（レギュラー全国平均）"
+    },
+    "btc_fear_greed": {
+      "direction": "down",
+      "days": 1,
+      "record": 1,
+      "prev_record": 0,
+      "label": "BTC恐怖・強欲指数"
+    }
   }
 }
