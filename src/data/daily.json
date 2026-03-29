@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-03-29T12:46:16.710763+09:00",
+  "updated_at": "2026-03-29T18:26:33.476085+09:00",
   "items": {
     "usdjpy": {
       "current": 160.0,
-      "previous": 155.2,
-      "diff": 4.8,
-      "diff_pct": 3.09,
+      "previous": 160.0,
+      "diff": 0.0,
+      "diff_pct": 0.0,
       "direction": "up",
       "year_start": 143.0,
       "label": "ドル円",
