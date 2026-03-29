@@ -1,4 +1,4 @@
-import { formatValue } from '../lib/format'
+import { formatValue, accentTextClass } from '../lib/format'
 
 type Props = {
   label: string
@@ -21,15 +21,7 @@ export default function BeforeAfter({
 }: Props) {
   const isUp = direction === 'up'
   const arrow = isUp ? '↑' : '↓'
-  const colorMap: Record<string, string> = {
-    red: 'text-red',
-    orange: 'text-orange',
-    purple: 'text-purple',
-    pink: 'text-pink',
-    blue: 'text-blue',
-    green: 'text-green',
-  }
-  const textColor = colorMap[accentColor] ?? 'text-red'
+  const textColor = accentTextClass(accentColor)
 
   return (
     <div className="flex items-center justify-between bg-white rounded-xl px-4 py-3 border border-border">

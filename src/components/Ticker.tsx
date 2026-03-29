@@ -1,4 +1,5 @@
 import dailyData from '../data/daily.json'
+import { formatValue } from '../lib/format'
 
 type TickerItem = {
   label: string
@@ -9,10 +10,7 @@ type TickerItem = {
 export default function Ticker() {
   const items: TickerItem[] = Object.values(dailyData.items).map((item) => ({
     label: item.label,
-    value:
-      Math.abs(item.current) >= 10000
-        ? (item.current / 10000).toFixed(1) + '万' + item.unit
-        : item.current.toLocaleString('ja-JP') + item.unit,
+    value: formatValue(item.current, item.unit),
     direction: item.direction as 'up' | 'down',
   }))
 

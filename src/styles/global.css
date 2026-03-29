@@ -27,6 +27,7 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -34,13 +35,66 @@ body {
   min-height: 100dvh;
 }
 
+/* スクロールバー（細め） */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
 /* 数字用フォントクラス */
 .font-number {
   font-family: var(--font-number);
 }
+
+/* ── アニメーション ── */
 
 /* ティッカーのスクロールアニメーション */
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* セクション入場：フェードインアップ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ヒーロー数字のカウントアップ強調 */
+@keyframes numberPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+.animate-number-pop {
+  animation: numberPop 0.3s ease-out;
+}
+
+/* NEW RECORD バッジの点滅 */
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+/* ストリーク高ランク時のグロー */
+@keyframes streakGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+  50%       { box-shadow: 0 0 12px 2px rgba(255, 107, 107, 0.18); }
+}
+
+/* カード入場の遅延クラス */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }

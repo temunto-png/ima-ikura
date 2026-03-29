@@ -8,6 +8,7 @@ import TriviaStrip from '../components/TriviaStrip.tsx'
 import PollCard from '../components/PollCard.tsx'
 import StoryCard from '../components/StoryCard.tsx'
 import BottomNav from '../components/BottomNav.tsx'
+import Ticker from '../components/Ticker.tsx'
 
 import monthlyData from '../data/monthly.json'
 import weeklyData from '../data/weekly.json'
@@ -20,15 +21,18 @@ const weekly = weeklyData.items
   <!-- ① Header: client:load は new Date() で今日の日付を表示するために必要 -->
   <Header client:load />
 
+  <!-- ティッカーバー: 静的データのため client:* 不要 -->
+  <Ticker />
+
   <main class="max-w-lg mx-auto pb-24">
     <!-- ② 累計カウンター -->
     <CumulativeCounter client:load />
 
     <!-- ③ きのう→きょう -->
-    <DailyChanges client:load />
+    <DailyChanges client:visible />
 
     <!-- ④ ストリークバナー -->
-    <StreakBanner client:load />
+    <StreakBanner client:visible />
 
     <!-- ⑤ トリビア帯 -->
     <TriviaStrip

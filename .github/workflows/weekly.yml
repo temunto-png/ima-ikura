@@ -47,6 +47,14 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: weekly data update $(date -u +%Y-%m-%d)"
           git push
 
-      - name: Notify on failure
-        if: failure()
-        run: echo "::error::Weekly update failed. Check logs."
+      - name: Trigger Cloudflare Pages deployment
+        if: env.CF_DEPLOY_HOOK != ''
+        env:
+          CF_DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$CF_DEPLOY_HOOK")
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::CF Pages deploy hook failed (HTTP $STATUS)"
+            exit 1
+          fi
+          echo "::notice::Cloudflare Pages deployment triggered."

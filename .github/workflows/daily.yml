@@ -50,6 +50,18 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: daily data update $(date -u +%Y-%m-%d)"
           git push
 
+      - name: Trigger Cloudflare Pages deployment
+        if: env.CF_DEPLOY_HOOK != ''
+        env:
+          CF_DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$CF_DEPLOY_HOOK")
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::CF Pages deploy hook failed (HTTP $STATUS)"
+            exit 1
+          fi
+          echo "::notice::Cloudflare Pages deployment triggered."
+
       - name: Post to X
         if: env.X_API_KEY != ''
         env:
@@ -59,6 +71,3 @@ jobs:
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
         run: python scripts/post_to_x.py
 
-      - name: Notify on failure
-        if: failure()
-        run: echo "::error::Daily update failed. Check logs."
