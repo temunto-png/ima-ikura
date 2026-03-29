@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.tsx'
+import BottomNav from '../../components/BottomNav.tsx'
+import NisaVis from '../../components/NisaVis.tsx'
+import StoryCard from '../../components/StoryCard.tsx'
+import TriviaStrip from '../../components/TriviaStrip.tsx'
+---
+
+<BaseLayout
+  title="NISAやってない人の機会損失 — いまいくら"
+  description="NISAをやっている人とやっていない人、5年後にどれだけ差がつく？"
+>
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-6 pb-24">
+    <h1 class="text-xl font-bold mb-2">📈 NISAの機会損失</h1>
+    <p class="text-text-muted text-sm mb-6">やってる人とやってない人、5年でこんなに差がつく</p>
+
+    <NisaVis client:visible />
+
+    <TriviaStrip
+      text="NISA口座は開設無料。最低100円から積立できるので、まずは始めることが大事。"
+      emoji="💡"
+      client:visible
+    />
+
+    <StoryCard
+      id="nisa"
+      label="NISAを始めてみる"
+      current="年間約5.4万円"
+      previous="0円"
+      unit=""
+      diffPct={null}
+      direction="up"
+      equivalent="何もしないでいると、毎年5万円以上の差がつきます"
+      ctaText="NISA口座を無料で開設"
+      ctaUrl="#"
+      isPR={true}
+      accentColor="blue"
+      client:visible
+    />
+
+    <section class="mt-6">
+      <h2 class="text-base font-bold mb-3">NISAって何？</h2>
+      <div class="space-y-3 text-sm text-text-muted leading-relaxed">
+        <p>
+          <strong class="text-text">NISA（少額投資非課税制度）</strong>は、
+          投資で得た利益に税金がかからない制度です。
+          通常は約20%の税金がかかりますが、NISA枠内なら0%。
+        </p>
+        <p>
+          2024年から新NISAがスタートし、年間360万円まで非課税で投資できるようになりました。
+        </p>
+      </div>
+    </section>
+
+    <p class="text-text-faint text-[10px] mt-8 border-t border-border pt-4">
+      出典：日本証券業協会 / 金融庁<br />
+      ※ 試算は過去の実績に基づくものであり、将来の運用成果を保証するものではありません。
+      投資判断は自己責任でお願いいたします。
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

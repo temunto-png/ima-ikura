@@ -1,0 +1,50 @@
+{
+  "updated_at": "2026-03-01T09:00:00+09:00",
+  "items": {
+    "tamago": {
+      "current": 305,
+      "year_ago": 198,
+      "diff": 107,
+      "diff_pct": 54.0,
+      "direction": "up",
+      "label": "卵（10個パック）",
+      "unit": "円"
+    },
+    "denki": {
+      "current": 8500,
+      "year_ago": 7200,
+      "diff": 1300,
+      "diff_pct": 18.1,
+      "direction": "up",
+      "label": "電気代（月平均）",
+      "unit": "円"
+    },
+    "cpi": {
+      "current": 107.8,
+      "year_ago": 104.5,
+      "diff": 3.3,
+      "diff_pct": 3.2,
+      "direction": "up",
+      "label": "物価指数",
+      "unit": ""
+    },
+    "real_wage": {
+      "current": -2.1,
+      "year_ago": -1.8,
+      "diff": -0.3,
+      "diff_pct": null,
+      "direction": "down",
+      "label": "手取りの実質価値（前年比）",
+      "unit": "%"
+    },
+    "loan_rate": {
+      "current": 1.85,
+      "year_ago": 1.35,
+      "diff": 0.5,
+      "diff_pct": 37.0,
+      "direction": "up",
+      "label": "住宅ローン変動金利",
+      "unit": "%"
+    }
+  }
+}

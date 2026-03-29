@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.tsx'
+import BottomNav from '../../components/BottomNav.tsx'
+import BeforeAfter from '../../components/BeforeAfter.tsx'
+import StoryCard from '../../components/StoryCard.tsx'
+import TriviaStrip from '../../components/TriviaStrip.tsx'
+
+import monthlyData from '../../data/monthly.json'
+
+const denki = monthlyData.items.denki
+---
+
+<BaseLayout
+  title="電気代いまいくら？ — いまいくら"
+  description="電気代（月平均）の最新データ。去年と比べた差額と節約法。"
+>
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-6 pb-24">
+    <h1 class="text-xl font-bold mb-2">⚡ 電気代（月平均）</h1>
+    <p class="text-text-muted text-sm mb-6">毎月の請求書、去年と比べてどうなった？</p>
+
+    <BeforeAfter
+      label="去年 → いま"
+      before={denki.year_ago}
+      after={denki.current}
+      unit="円"
+      diffPct={denki.diff_pct}
+      direction={denki.direction}
+      accentColor="orange"
+      client:visible
+    />
+
+    <div class="mt-6 bg-orange/10 border border-orange/20 rounded-xl p-4">
+      <h2 class="text-sm font-bold mb-2">💰 年間だとこれだけ違う</h2>
+      <div class="space-y-2 text-sm text-text">
+        <p>月{denki.diff.toLocaleString()}円 × 12ヶ月 = 年間<span class="font-number font-bold text-orange">{(denki.diff * 12).toLocaleString()}</span>円</p>
+        <p class="text-text-muted text-xs">ディズニーランドのチケット約{Math.floor(denki.diff * 12 / 7900)}枚分</p>
+      </div>
+    </div>
+
+    <!-- PR: 電力比較 -->
+    <StoryCard
+      id="denki"
+      label="電力会社を見直すだけで節約できるかも"
+      current={denki.current}
+      previous={denki.year_ago}
+      unit="円"
+      diffPct={denki.diff_pct}
+      direction={denki.direction}
+      equivalent="電力会社の切り替えで年間1〜3万円節約できるケースも"
+      ctaText="電力会社を比較してみる"
+      ctaUrl="#"
+      isPR={true}
+      accentColor="orange"
+      client:visible
+    />
+
+    <TriviaStrip
+      text="オール電化の家庭は特に影響大。エアコンの設定温度1度で年間約1,000円の差。"
+      emoji="🌡️"
+      client:visible
+    />
+
+    <section class="mt-6">
+      <h2 class="text-base font-bold mb-3">なぜ電気代は上がった？</h2>
+      <div class="space-y-3 text-sm text-text-muted leading-relaxed">
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong class="text-text">燃料費調整額</strong>の上昇（LNG・石炭価格の高止まり）</li>
+          <li><strong class="text-text">再エネ賦課金</strong>の増加</li>
+          <li><strong class="text-text">政府補助金</strong>の段階的縮小</li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="text-text-faint text-[10px] mt-8 border-t border-border pt-4">
+      出典：資源エネルギー庁 / 各電力会社公表データ<br />
+      最終更新：{monthlyData.updated_at.slice(0, 10)}
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

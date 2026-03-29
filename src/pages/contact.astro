@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.tsx'
+import BottomNav from '../components/BottomNav.tsx'
+---
+
+<BaseLayout title="お問い合わせ — いまいくら">
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-8 pb-24">
+    <h1 class="text-xl font-bold mb-6">お問い合わせ</h1>
+
+    <p class="text-sm text-text-muted mb-6">
+      ご質問・ご意見・データの誤りのご報告など、お気軽にお問い合わせください。
+    </p>
+
+    <form
+      action="https://formspree.io/f/YOUR_FORM_ID"
+      method="POST"
+      class="space-y-4"
+    >
+      <div>
+        <label for="name" class="block text-sm font-bold mb-1">お名前</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:border-blue transition-colors"
+          placeholder="山田太郎"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-bold mb-1">メールアドレス</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:border-blue transition-colors"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-bold mb-1">お問い合わせ内容</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="5"
+          class="w-full border border-border rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:border-blue transition-colors resize-y"
+          placeholder="お気軽にどうぞ"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-text text-white font-bold text-sm py-3 rounded-xl hover:opacity-90 transition-opacity"
+      >
+        送信する
+      </button>
+    </form>
+
+    <p class="text-text-faint text-[11px] mt-4">
+      ※ 通常2〜3営業日以内に返信いたします。
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

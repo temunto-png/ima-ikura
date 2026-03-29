@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* ── カスタムテーマ（HANDOFF仕様準拠） ── */
+@theme {
+  --color-bg: #fafafa;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #888888;
+  --color-text-faint: #bbbbbb;
+  --color-border: #f0f0f0;
+  --color-red: #ff6b6b;
+  --color-green: #00b894;
+  --color-orange: #f0932b;
+  --color-purple: #6c5ce7;
+  --color-pink: #e84393;
+  --color-blue: #0984e3;
+  --color-yellow: #f9ca24;
+
+  --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-number: 'DM Sans', sans-serif;
+}
+
+/* ── ベーススタイル ── */
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+/* 数字用フォントクラス */
+.font-number {
+  font-family: var(--font-number);
+}
+
+/* ティッカーのスクロールアニメーション */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

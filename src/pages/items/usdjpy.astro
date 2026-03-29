@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.tsx'
+import BottomNav from '../../components/BottomNav.tsx'
+import BeforeAfter from '../../components/BeforeAfter.tsx'
+import TriviaStrip from '../../components/TriviaStrip.tsx'
+
+import dailyData from '../../data/daily.json'
+
+const usdjpy = dailyData.items.usdjpy
+---
+
+<BaseLayout
+  title="ドル円いまいくら？ — いまいくら"
+  description="今日のドル円レートと、年初からの変動。円安でiPhoneがまた高くなる？"
+>
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-6 pb-24">
+    <h1 class="text-xl font-bold mb-2">💱 ドル円レート</h1>
+    <p class="text-text-muted text-sm mb-6">円安が進むと、iPhoneも旅行も高くなる</p>
+
+    <BeforeAfter
+      label="きのう → きょう"
+      before={usdjpy.previous}
+      after={usdjpy.current}
+      unit="円"
+      diffPct={usdjpy.diff_pct}
+      direction={usdjpy.direction}
+      accentColor="blue"
+      client:visible
+    />
+
+    {usdjpy.year_start && (
+      <div class="mt-4">
+        <BeforeAfter
+          label="年初 → きょう"
+          before={usdjpy.year_start}
+          after={usdjpy.current}
+          unit="円"
+          diffPct={Math.round((usdjpy.current - usdjpy.year_start) / usdjpy.year_start * 1000) / 10}
+          direction={usdjpy.current >= usdjpy.year_start ? "up" : "down"}
+          accentColor="blue"
+          client:visible
+        />
+      </div>
+    )}
+
+    <div class="mt-6 bg-blue/10 border border-blue/20 rounded-xl p-4">
+      <h2 class="text-sm font-bold mb-2">📱 iPhoneで考えると</h2>
+      <div class="space-y-2 text-sm text-text">
+        <p>iPhone 16 Pro（$999）の場合：</p>
+        <p>年初レート → <span class="font-number">{usdjpy.year_start && Math.round(999 * usdjpy.year_start).toLocaleString()}</span>円</p>
+        <p>今日のレート → <span class="font-number font-bold text-blue">{Math.round(999 * usdjpy.current).toLocaleString()}</span>円</p>
+        <p class="text-text-muted text-xs">
+          差額：約{usdjpy.year_start && Math.round(999 * (usdjpy.current - usdjpy.year_start)).toLocaleString()}円
+        </p>
+      </div>
+    </div>
+
+    <TriviaStrip
+      text="海外旅行の予算も円安でどんどん膨らむ。ハワイ旅行は10年前の1.5倍に。"
+      emoji="✈️"
+      client:visible
+    />
+
+    <section class="mt-6">
+      <h2 class="text-base font-bold mb-3">円安ってなに？</h2>
+      <div class="space-y-3 text-sm text-text-muted leading-relaxed">
+        <p>
+          ドル円が上がる = 1ドルを買うのにより多くの円が必要 = <strong class="text-text">円の価値が下がっている</strong>。
+        </p>
+        <p>
+          輸入品（iPhone、食料、ガソリン等）が値上がりする一方、
+          輸出企業の利益は増えるという二面性があります。
+        </p>
+      </div>
+    </section>
+
+    <p class="text-text-faint text-[10px] mt-8 border-t border-border pt-4">
+      出典：ExchangeRate-API<br />
+      最終更新：{dailyData.updated_at.slice(0, 10)}
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-03-25T15:00:00+09:00",
+  "items": {
+    "gasoline": {
+      "current": 178,
+      "previous": 175,
+      "year_ago": 165,
+      "diff": 3,
+      "diff_pct": 1.7,
+      "diff_year_pct": 7.9,
+      "direction": "up",
+      "label": "ガソリン（レギュラー全国平均）",
+      "unit": "円/L"
+    }
+  }
+}

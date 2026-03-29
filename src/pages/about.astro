@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.tsx'
+import BottomNav from '../components/BottomNav.tsx'
+---
+
+<BaseLayout title="運営者情報 — いまいくら">
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-8 pb-24">
+    <h1 class="text-xl font-bold mb-6">運営者情報</h1>
+
+    <div class="space-y-6 text-sm leading-relaxed text-text">
+      <section>
+        <h2 class="font-bold text-base mb-2">サイト名</h2>
+        <p>いまいくら（ima-ikura.com）</p>
+      </section>
+
+      <section>
+        <h2 class="font-bold text-base mb-2">サイトの目的</h2>
+        <p>
+          物価・為替・生活コストなど、暮らしに関わるお金の「いま」を
+          わかりやすくお届けするサービスです。
+          専門用語を使わず、身近な金額に換算して表現することで、
+          誰でも経済の動きを感じられることを目指しています。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-bold text-base mb-2">データの出典</h2>
+        <ul class="list-disc list-inside space-y-1 text-text-muted">
+          <li>総務省 消費者物価指数（CPI）</li>
+          <li>総務省 小売物価統計調査</li>
+          <li>厚生労働省 毎月勤労統計調査</li>
+          <li>資源エネルギー庁 石油製品価格調査</li>
+          <li>住宅金融支援機構</li>
+          <li>日本証券業協会</li>
+          <li>ExchangeRate-API（為替レート）</li>
+          <li>Alternative.me（暗号資産データ）</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-bold text-base mb-2">免責事項</h2>
+        <p class="text-text-muted">
+          当サイトに掲載している情報は、可能な限り正確な情報を提供するよう努めておりますが、
+          正確性や安全性を保証するものではありません。
+          当サイトの情報を利用することで発生した損害について、一切の責任を負いません。
+          投資に関する判断は自己責任でお願いいたします。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-bold text-base mb-2">広告について</h2>
+        <p class="text-text-muted">
+          当サイトは、A8.net・もしもアフィリエイト・楽天アフィリエイト等の
+          アフィリエイトプログラムに参加しています。
+          広告を含むコンテンツには「PR」と表記しています。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-bold text-base mb-2">お問い合わせ</h2>
+        <p>
+          <a href="/contact" class="text-blue underline">お問い合わせフォーム</a>よりご連絡ください。
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

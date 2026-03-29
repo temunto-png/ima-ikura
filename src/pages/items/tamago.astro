@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.tsx'
+import BottomNav from '../../components/BottomNav.tsx'
+import BeforeAfter from '../../components/BeforeAfter.tsx'
+import StoryCard from '../../components/StoryCard.tsx'
+import TriviaStrip from '../../components/TriviaStrip.tsx'
+
+import monthlyData from '../../data/monthly.json'
+import streakData from '../../data/streaks.json'
+
+const tamago = monthlyData.items.tamago
+const streak = streakData.streaks.tamago
+---
+
+<BaseLayout
+  title="卵の値段いまいくら？ — いまいくら"
+  description="卵（10個パック）の最新価格と推移。去年と比べていくら上がった？"
+>
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-6 pb-24">
+    <h1 class="text-xl font-bold mb-2">🥚 卵（10個パック）</h1>
+    <p class="text-text-muted text-sm mb-6">スーパーで毎日見る値札、去年と比べてみよう</p>
+
+    <!-- メインの前→いま -->
+    <BeforeAfter
+      label="去年 → いま"
+      before={tamago.year_ago}
+      after={tamago.current}
+      unit="円"
+      diffPct={tamago.diff_pct}
+      direction={tamago.direction}
+      accentColor="red"
+      client:visible
+    />
+
+    <!-- ストリーク -->
+    {streak && streak.days >= 3 && (
+      <div class="mt-4 bg-red/5 rounded-xl px-4 py-3 flex items-center gap-3">
+        <span class="text-2xl">🔥</span>
+        <div>
+          <p class="text-sm font-bold">
+            連続値上がり {streak.days}日
+            {streak.days >= streak.record && streak.days >= 10 && (
+              <span class="text-[10px] text-white bg-red px-1.5 py-0.5 rounded-full ml-1">NEW RECORD</span>
+            )}
+          </p>
+          <p class="text-text-muted text-xs">過去最長記録: {streak.record}日</p>
+        </div>
+      </div>
+    )}
+
+    <!-- 金額換算 -->
+    <div class="mt-6 bg-yellow/10 border border-yellow/20 rounded-xl p-4">
+      <h2 class="text-sm font-bold mb-2">💰 これって月にいくら？</h2>
+      <div class="space-y-2 text-sm text-text">
+        <p>週2パック買う人 → 月<span class="font-number font-bold text-red">{(tamago.diff * 8).toLocaleString()}</span>円の差</p>
+        <p>年間だと → <span class="font-number font-bold text-red">{(tamago.diff * 8 * 12).toLocaleString()}</span>円</p>
+        <p class="text-text-muted text-xs">ランチ{Math.floor(tamago.diff * 8 * 12 / 1000)}回分が消えた計算</p>
+      </div>
+    </div>
+
+    <TriviaStrip
+      text="このペースが続くと2029年に卵1パック500円を超える計算。"
+      emoji="📈"
+      client:visible
+    />
+
+    <!-- 解説 -->
+    <section class="mt-6">
+      <h2 class="text-base font-bold mb-3">なぜ卵は高くなった？</h2>
+      <div class="space-y-3 text-sm text-text-muted leading-relaxed">
+        <p>
+          卵の値上がりには主に3つの原因があります。
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong class="text-text">鳥インフルエンザ</strong>による大量殺処分で供給が激減</li>
+          <li><strong class="text-text">飼料（エサ）価格</strong>の高騰（とうもろこし・大豆が円安で割高に）</li>
+          <li><strong class="text-text">光熱費</strong>の上昇（鶏舎の温度管理コスト増）</li>
+        </ul>
+        <p>
+          「物価の優等生」と呼ばれた卵も、もう昔の話。
+          家計への影響は地味だけど確実に効いています。
+        </p>
+      </div>
+    </section>
+
+    <!-- 出典 -->
+    <p class="text-text-faint text-[10px] mt-8 border-t border-border pt-4">
+      出典：総務省 小売物価統計調査（e-Stat API）<br />
+      最終更新：{monthlyData.updated_at.slice(0, 10)}
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

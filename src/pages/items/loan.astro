@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.tsx'
+import BottomNav from '../../components/BottomNav.tsx'
+import LoanVis from '../../components/LoanVis.tsx'
+import BeforeAfter from '../../components/BeforeAfter.tsx'
+import TriviaStrip from '../../components/TriviaStrip.tsx'
+
+import monthlyData from '../../data/monthly.json'
+
+const loan = monthlyData.items.loan_rate
+---
+
+<BaseLayout
+  title="住宅ローン金利いまいくら？ — いまいくら"
+  description="住宅ローン変動金利の最新データ。金利差で返済額がどれだけ変わるか一目でわかる。"
+>
+  <Header client:load />
+
+  <main class="max-w-lg mx-auto px-4 py-6 pb-24">
+    <h1 class="text-xl font-bold mb-2">🏠 住宅ローン金利</h1>
+    <p class="text-text-muted text-sm mb-6">たった0.5%の差が、35年で数百万円の差に</p>
+
+    <BeforeAfter
+      label="去年 → いま"
+      before={`${loan.year_ago}%`}
+      after={`${loan.current}%`}
+      unit=""
+      diffPct={loan.diff_pct}
+      direction={loan.direction}
+      accentColor="pink"
+      client:visible
+    />
+
+    <div class="mt-6">
+      <LoanVis
+        loanAmount={35000000}
+        yearsAgoRate={loan.year_ago}
+        currentRate={loan.current}
+        loanYears={35}
+        client:visible
+      />
+    </div>
+
+    <TriviaStrip
+      text="変動金利と固定金利の差も広がり中。どちらが得かは、金利の将来予測次第。"
+      emoji="🏦"
+      client:visible
+    />
+
+    <section class="mt-6">
+      <h2 class="text-base font-bold mb-3">金利が上がるとどうなる？</h2>
+      <div class="space-y-3 text-sm text-text-muted leading-relaxed">
+        <p>
+          日銀の利上げに伴い、変動金利も上昇傾向。
+          すでにローンを組んでいる人は<strong class="text-text">返済額が増える</strong>可能性があります。
+        </p>
+        <p>
+          これから組む人は、固定金利との比較がより重要に。
+          借り換えシミュレーションで確認するのがおすすめです。
+        </p>
+      </div>
+    </section>
+
+    <p class="text-text-faint text-[10px] mt-8 border-t border-border pt-4">
+      出典：住宅金融支援機構 / 各銀行公表データ<br />
+      最終更新：{monthlyData.updated_at.slice(0, 10)}<br />
+      ※ 試算は概算です。実際の返済額は諸条件により異なります。
+    </p>
+  </main>
+
+  <BottomNav client:load />
+</BaseLayout>

@@ -1,0 +1,24 @@
+{
+  "updated_at": "2026-03-28T06:00:00+09:00",
+  "items": {
+    "usdjpy": {
+      "current": 155.2,
+      "previous": 154.4,
+      "diff": 0.8,
+      "diff_pct": 0.52,
+      "direction": "up",
+      "year_start": 143.0,
+      "label": "ドル円",
+      "unit": "円"
+    },
+    "btc_fear_greed": {
+      "current": 42,
+      "previous": 48,
+      "diff": -6,
+      "diff_pct": -12.5,
+      "direction": "down",
+      "label": "BTC恐怖・強欲指数",
+      "unit": ""
+    }
+  }
+}

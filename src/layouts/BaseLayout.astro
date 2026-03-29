@@ -1,0 +1,67 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+  ogImage?: string
+}
+
+const {
+  title = 'いまいくら — きょうの値段、きょうの暮らし',
+  description = '物価・為替・生活コストを毎日わかりやすく。専門用語なし、金額換算あり。',
+  ogImage = '/ogp/default.png',
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`https://ima-ikura.com${Astro.url.pathname}`} />
+
+    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://ima-ikura.com${ogImage}`} />
+    <meta property="og:url" content={`https://ima-ikura.com${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="いまいくら" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ima_ikura" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://ima-ikura.com${ogImage}`} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org 構造化データ -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "いまいくら",
+      "url": "https://ima-ikura.com",
+      "description": "きょうの値段、きょうの暮らし",
+      "applicationCategory": "FinanceApplication"
+    })} />
+  </head>
+  <body class="bg-bg text-text min-h-dvh">
+    <slot />
+  </body>
+</html>
