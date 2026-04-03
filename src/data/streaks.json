@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-03T07:53:22.042581+09:00",
+  "updated_at": "2026-04-04T07:02:50.133145+09:00",
   "streaks": {
     "tamago": {
       "direction": "up",
@@ -9,21 +9,21 @@
       "label": "卵"
     },
     "usdjpy": {
-      "direction": "down",
-      "days": 4,
+      "direction": "up",
+      "days": 1,
       "record": 14,
       "prev_record": 14,
       "label": "ドル円"
     },
     "gasoline": {
       "direction": "up",
-      "days": 11,
-      "record": 11,
-      "prev_record": 10,
+      "days": 12,
+      "record": 12,
+      "prev_record": 11,
       "label": "ガソリン（レギュラー全国平均）"
     },
     "btc_fear_greed": {
-      "direction": "up",
+      "direction": "down",
       "days": 1,
       "record": 4,
       "prev_record": 3,
