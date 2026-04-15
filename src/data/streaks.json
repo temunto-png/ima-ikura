@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-15T06:50:27.988770+09:00",
+  "updated_at": "2026-04-15T19:40:22.990891+09:00",
   "streaks": {
     "tamago": {
       "direction": "up",
@@ -10,21 +10,21 @@
     },
     "usdjpy": {
       "direction": "down",
-      "days": 1,
+      "days": 2,
       "record": 14,
       "prev_record": 14,
       "label": "ドル円"
     },
     "gasoline": {
       "direction": "up",
-      "days": 24,
-      "record": 24,
-      "prev_record": 23,
+      "days": 25,
+      "record": 25,
+      "prev_record": 24,
       "label": "ガソリン（レギュラー全国平均）"
     },
     "btc_fear_greed": {
       "direction": "up",
-      "days": 1,
+      "days": 2,
       "record": 4,
       "prev_record": 3,
       "label": "BTC恐怖・強欲指数"
